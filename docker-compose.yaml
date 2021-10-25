@@ -1,0 +1,32 @@
+version: '3'
+services:
+  api:
+    container_name: api
+    image: node:12.18.4
+    working_dir: /code
+    volumes:
+      - type: bind
+        source: ./api
+        target: /code
+    ports:
+      - 3000:3000
+    environment:
+      - DB_NAME=habit
+      - DB_CONNECTION=mongodb://404bnf:tracker@db:27017
+    depends_on:
+      - db
+    command: bash -c "npm install && npm run dev"
+  db:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=404bnf
+      - MONGO_INITDB_DATABASE=habit
+      - MONGO_INITDB_ROOT_PASSWORD=tracker
+    volumes:
+      - "./db/seeds.js:/docker-entrypoint-initdb.d/seeds.js:ro"
+      - "dbdata:/var/lib/mongodb/data"
+volumes:
+  dbdata:
+networks:
+  default:
+    name: habit_api
