@@ -21,13 +21,14 @@ module.exports = class User {
             }
         })
     }
-
-    static getUserByEmail(email){
+// problem with log in, findByEmail function fucked, fucked at line 30
+    static findByEmail(email){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init()
-                console.log(email)
+                
                 let data = await db.collection("users").find({email:email}).toArray()
+                console.log(data)
                 resolve(data);
             } catch (err) {
                 reject("Error retrieving email.")

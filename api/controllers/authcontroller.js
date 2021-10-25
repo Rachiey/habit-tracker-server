@@ -22,6 +22,7 @@ async function register (req, res) {
 
 async function login (req, res) {
     try {
+        console.log(req.body.email)
         const user = await User.findByEmail(req.body.email)
         if(!user){ throw new Error('No user with this email') }
         const authed = bcrypt.compare(req.body.password, user.password)

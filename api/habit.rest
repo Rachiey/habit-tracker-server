@@ -13,7 +13,7 @@ content-type: application/json
 
 {
     "name": "max",
-    "email": "maxxxxxxxxx@max.com",
+    "email": "maxxx@max.com",
     "password": "maxisthebest" 
 }
 ###
