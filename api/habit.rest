@@ -5,3 +5,5 @@ GET http://localhost:3000/habits
 GET http://localhost:3000/habits/6176870f585134fd7e4d2454
 ###
 GET http://localhost:3000/users
+###
+GET http://localhost:3000/auth

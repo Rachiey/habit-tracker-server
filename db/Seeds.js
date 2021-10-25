@@ -8,6 +8,6 @@ db.habits.insert([
 
 db.users.drop()
 db.users.insert([
-    {name: "James", email: "james@james.com", password:"jamesisthebest", _id:"6176870f585134fd7e4d2454"}
+    {name: "James", email: "james@james.com", password:"$2a$10$hGslON1dpnfTmqMAietLlew3sf/TeDjnQKVPwIj8/EjxBBXAwbcnW", _id:"6176870f585134fd7e4d2454"}
 
 ])
