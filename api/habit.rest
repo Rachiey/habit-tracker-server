@@ -6,4 +6,15 @@ GET http://localhost:3000/habits/6176870f585134fd7e4d2454
 ###
 GET http://localhost:3000/users
 ###
-GET http://localhost:3000/auth
+GET http://localhost:3000/auth/
+###
+POST http://localhost:3000/auth/register
+content-type: application/json
+
+{
+    "name": "max",
+    "email": "max@max.com",
+    "password": "maxisthebest" 
+}
+###
+GET http://localhost:3000/users/6176d4fd5dea036b4f993abc
