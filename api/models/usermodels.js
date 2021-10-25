@@ -55,10 +55,9 @@ module.exports = class User {
                 let userData = await db.collection('users').insertOne({ "name":name, "email":email, "password":password })
                 const newUserId = userData.insertedId.toString()
                 console.log(newUserId)
-                let user = await getUserBy_Id(newUserId)
-                
+                let user = await User.getUserBy_Id(newUserId)
                 console.log(user)
-                let newUser = new User(user);
+                let newUser = new User(user[0]);
                 resolve (newUser);
             } catch (err) {
                 reject('Error creating user');
