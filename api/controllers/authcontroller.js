@@ -12,7 +12,8 @@ async function register (req, res) {
     try {
         const salt = await bcrypt.genSalt();
         const hashed = await bcrypt.hash(req.body.password, salt)
-        await User.create({...req.body, password: hashed})
+        console.log(req.body.name)
+        await User.create(req.body.name, req.body.email, hashed)
         res.status(201).json({msg: 'User created'})
     } catch (err) {
         res.status(500).json({err});
@@ -21,9 +22,13 @@ async function register (req, res) {
 
 async function login (req, res) {
     try {
+        console.log(req.body.email)
         const user = await User.findByEmail(req.body.email)
+        console.log(user)
         if(!user){ throw new Error('No user with this email') }
+        console.log(2)
         const authed = bcrypt.compare(req.body.password, user.password)
+        console.log(3)
         if (!!authed){
             const payload = { name: user.name, email: user.email }
             const sendToken = (err, token) => {
