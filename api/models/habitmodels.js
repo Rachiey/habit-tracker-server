@@ -40,15 +40,8 @@ module.exports = class Habit {
             try {
                 const db = await init();
                 createdDate = Date()
-                if (!!quantity){
-                    let userData = await db.collection('habits').find({userID:userId}).insertOne({ "goodHabits": habitName: {"units":units, "quantity":quantity, "days":days, "created_date":createdDate, "history":[]} })
-                } else {
-                    let userData = await db.collection('habits').find({userID:userId}).insertOne({ "badHabits": habitName: {"created_date":createdDate, "history":[]} })
-                }
-                let user = await User.getUserBy_Id(newUserId)
-                console.log(user)
-                let newUser = new User(user[0]);
-                resolve (newUser);
+                let newHabit = db.collection('habits').insertOne({"userID":userID, "habitName":habitName, "units":units, "quantity":quantity, "days":days, "created_date":createdDate, "history":[] })
+                resolve (newHabit);
             } catch (err) {
                 reject('Error creating user');
             }
