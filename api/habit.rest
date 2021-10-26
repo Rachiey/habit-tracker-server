@@ -18,3 +18,16 @@ content-type: application/json
 }
 ###
 GET http://localhost:3000/users/6176d4fd5dea036b4f993abc
+###
+POST http://localhost:3000/habits
+content-type: application/json
+
+{
+    "habitName": "run",
+    "userID": "6176870f585134fd7e4d2454",
+    "goodHabit": true,
+    "units": "km",
+    "quantity": 5,  
+    "days":{"mon":true, "tues":true, "wed":true, "thur":true, "fri":true, "sat":true, "sun":true}
+    
+}

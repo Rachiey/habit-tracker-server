@@ -16,4 +16,13 @@ async function getByUserId (req, res) {
         res.status(500).send(err);
     }
 }
-module.exports = {index, getByUserId}
+async function createHabit (req, res) {
+    try {
+        const habit = await Habit.create(req.body)
+        res.status(201).json(habit);
+    } catch (err) {
+        res.status(422).send(err);
+    }
+}
+
+module.exports = {index, getByUserId, createHabit}
