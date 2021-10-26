@@ -4,11 +4,14 @@ const{ ObjectID } = require('bson')
 
 module.exports = class Habit {
     constructor(data) {
-        this.name = data.name;
-        this.frequency = data.frequency;
+        this.habitName = data.habitName;
+        this.quantity = data.quantity;
         this.history = data.history;
         this.createdDate = data.createdDate;
-        this.id = data._id;
+        this.goodHabit = data.goodHabit;
+        this.units = data.units;
+        this.days = data.days;
+        this.habitID = data._id;
         this.userID = data.userID
     }
     static get all(){
@@ -17,6 +20,7 @@ module.exports = class Habit {
                 const db = await init() 
                 let data = await db.collection("habits").find().toArray()
                 let habits = data.map(d => new Habit({ ...d}))
+                console.log(habits)
                 resolve(habits);
             } catch (err) {
                 reject("Error retrieving habits.")
@@ -35,15 +39,16 @@ module.exports = class Habit {
             }
         })
     }
-    static create(userID, habitName, units="completions", quantity, days){
+    static create(userID, habitName, goodHabit, units="completions", quantity, days){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                createdDate = Date()
-                let newHabit = db.collection('habits').insertOne({"userID":userID, "habitName":habitName, "units":units, "quantity":quantity, "days":days, "created_date":createdDate, "history":[] })
+                created_date = new Date()
+                console.log("the date is" , created_date)
+                let newHabit = db.collection('habits').insertOne({"userID":userID, "habitName":habitName, "goodHabit":goodHabit, "units":units, "quantity":quantity, "days":days, "created_date":created_date, "history":[] })
                 resolve (newHabit);
             } catch (err) {
-                reject('Error creating user');
+                reject('Error creating habit');
             }
         });
     }
