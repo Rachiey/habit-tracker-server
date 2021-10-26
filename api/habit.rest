@@ -12,9 +12,9 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
-    "name": "max",
+    "name": "bob",
     "email": "max@max.com",
     "password": "maxisthebest" 
 }
 ###
-GET http://localhost:3000/users/6176d4fd5dea036b4f993abc
+GET http://localhost:3000/users/6176d8ca8f28efc75fb67ebf

@@ -22,13 +22,14 @@ module.exports = class User {
         })
     }
 
-    static getUserByEmail(email){
+    static findByEmail(email){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init()
                 console.log(email)
-                let data = await db.collection("users").find({email:email}).toArray()
-                resolve(data);
+                let data = await db.collection("users").find({"email":email})
+                let user = new User(data);
+                resolve(user);
             } catch (err) {
                 reject("Error retrieving email.")
             }
@@ -36,9 +37,9 @@ module.exports = class User {
     }
 
     static getUserBy_Id(userId){
-        console.log(userId)
         return new Promise (async (resolve, reject) => {
             try {
+                console.log(userId)
                 
                 const db = await init()
                 let data = await db.collection("users").find({_id:ObjectID(userId)}).toArray()
@@ -54,11 +55,10 @@ module.exports = class User {
                 const db = await init();
                 let userData = await db.collection('users').insertOne({ "name":name, "email":email, "password":password })
                 const newUserId = userData.insertedId.toString()
-                console.log(newUserId)
-                let user = await getUserBy_Id(newUserId)
-                
-                console.log(user)
-                let newUser = new User(user);
+                let user = await User.getUserBy_Id(newUserId)
+                console.log(user);
+                let newUser = new User(user[0]);
+                console.log(newUser)
                 resolve (newUser);
             } catch (err) {
                 reject('Error creating user');

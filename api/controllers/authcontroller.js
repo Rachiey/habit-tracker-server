@@ -20,6 +20,8 @@ async function register (req, res) {
     }
 }
 
+login("max@max.com")
+
 async function login (req, res) {
     try {
         const user = await User.findByEmail(req.body.email)
