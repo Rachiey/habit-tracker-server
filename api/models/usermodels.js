@@ -21,14 +21,14 @@ module.exports = class User {
         })
     }
 
+  
     static findByEmail(email){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init()
-                console.log(email)
                 let data = await db.collection("users").find({email:email}).toArray()
-
                 let user = new User(data[0]);
+
 
                 resolve(user);
             } catch (err) {
@@ -41,7 +41,6 @@ module.exports = class User {
         return new Promise (async (resolve, reject) => {
             try {
                 console.log(userId)
-                
                 const db = await init()
                 let data = await db.collection("users").find({_id:ObjectID(userId)}).toArray()
                 resolve(data);

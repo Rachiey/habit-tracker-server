@@ -14,8 +14,23 @@ content-type: application/json
 {
 
     "name": "max",
-    "email": "maxxxxxxxxx@max.com",
+    "email": "maxxx@max.com",
     "password": "maxisthebest" 
 }
 ###
-GET http://localhost:3000/users/6176d8ca8f28efc75fb67ebf
+
+GET http://localhost:3000/users/6176d4fd5dea036b4f993abc
+###
+POST http://localhost:3000/habits
+content-type: application/json
+
+{
+    "habitName": "run",
+    "userID": "6176870f585134fd7e4d2454",
+    "goodHabit": true,
+    "units": "km",
+    "quantity": 5,  
+    "days":{"mon":true, "tues":true, "wed":true, "thur":true, "fri":true, "sat":true, "sun":true}
+    
+}
+
