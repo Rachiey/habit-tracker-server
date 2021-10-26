@@ -35,4 +35,23 @@ module.exports = class Habit {
             }
         })
     }
+    static create(userID, habitName, units="completions", quantity, days){
+        return new Promise (async (resolve, reject) => {
+            try {
+                const db = await init();
+                createdDate = Date()
+                if (!!quantity){
+                    let userData = await db.collection('habits').find({userID:userId}).insertOne({ "goodHabits": habitName: {"units":units, "quantity":quantity, "days":days, "created_date":createdDate, "history":[]} })
+                } else {
+                    let userData = await db.collection('habits').find({userID:userId}).insertOne({ "badHabits": habitName: {"created_date":createdDate, "history":[]} })
+                }
+                let user = await User.getUserBy_Id(newUserId)
+                console.log(user)
+                let newUser = new User(user[0]);
+                resolve (newUser);
+            } catch (err) {
+                reject('Error creating user');
+            }
+        });
+    }
 };
