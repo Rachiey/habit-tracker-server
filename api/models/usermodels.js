@@ -1,5 +1,4 @@
 const { init } = require ('../dbConfig')
-const { ObjectId } = require('mongodb')
 const{ ObjectID } = require('bson')
 
 module.exports = class User {
@@ -21,15 +20,16 @@ module.exports = class User {
             }
         })
     }
-// problem with log in, findByEmail function fucked, fucked at line 30
+
+  
     static findByEmail(email){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init()
-                
                 let data = await db.collection("users").find({email:email}).toArray()
-                let user = new User(data[0])
-                
+                let user = new User(data[0]);
+
+
                 resolve(user);
             } catch (err) {
                 reject("Error retrieving email.")
@@ -38,10 +38,9 @@ module.exports = class User {
     }
 
     static getUserBy_Id(userId){
-        console.log(userId)
         return new Promise (async (resolve, reject) => {
             try {
-                
+                console.log(userId)
                 const db = await init()
                 let data = await db.collection("users").find({_id:ObjectID(userId)}).toArray()
                 resolve(data);

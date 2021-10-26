@@ -12,11 +12,13 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
+
     "name": "max",
     "email": "maxxx@max.com",
     "password": "maxisthebest" 
 }
 ###
+
 GET http://localhost:3000/users/6176d4fd5dea036b4f993abc
 ###
 POST http://localhost:3000/habits
@@ -31,3 +33,4 @@ content-type: application/json
     "days":{"mon":true, "tues":true, "wed":true, "thur":true, "fri":true, "sat":true, "sun":true}
     
 }
+
