@@ -47,6 +47,7 @@ module.exports = class Habit {
                 const db = await init();
                 const created_date = Date();
                 console.log(created_date)
+                date = `${created_date.getDate()}/${created_date.getMonth()}/${created_date.getFullYear()}`
                 let newHabit = await db.collection('habits').insertOne({"userID":userID, "habitName":habitName, "goodHabit":goodHabit, "units":units, "created_date":created_date, "quantity":quantity, "days":days, "history":[] })
                 console.log(newHabit)
                 resolve (newHabit);
@@ -59,11 +60,24 @@ module.exports = class Habit {
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init()
-                
                 let data = await db.collection("habits").find({_id:habitID}).toArray()
                 resolve(data);
             } catch (err) {
                 reject("Error retrieving ID.")
+            }
+        })
+    }
+
+    static incrementHabit(habitID){
+        return new Promise (async (resolve, reject) => {
+            try {
+
+                let history = getByHabit_Id(habitID).history
+                console.log(history)
+                db.habits.updateOne({habitID:habitID}, { $set: {"history": updatedHistory}})
+
+            } catch (err) {
+                reject("Error incrementing habit")
             }
         })
     }
