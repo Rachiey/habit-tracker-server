@@ -22,9 +22,13 @@ async function register (req, res) {
 
 async function login (req, res) {
     try {
+        console.log(req.body.email)
         const user = await User.findByEmail(req.body.email)
+        console.log(user)
         if(!user){ throw new Error('No user with this email') }
+        console.log(2)
         const authed = bcrypt.compare(req.body.password, user.password)
+        console.log(3)
         if (!!authed){
             const payload = { name: user.name, email: user.email }
             const sendToken = (err, token) => {

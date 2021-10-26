@@ -21,14 +21,16 @@ module.exports = class User {
             }
         })
     }
-
-    static getUserByEmail(email){
+// problem with log in, findByEmail function fucked, fucked at line 30
+    static findByEmail(email){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init()
-                console.log(email)
+                
                 let data = await db.collection("users").find({email:email}).toArray()
-                resolve(data);
+                let user = new User(data[0])
+                
+                resolve(user);
             } catch (err) {
                 reject("Error retrieving email.")
             }
@@ -55,10 +57,9 @@ module.exports = class User {
                 let userData = await db.collection('users').insertOne({ "name":name, "email":email, "password":password })
                 const newUserId = userData.insertedId.toString()
                 console.log(newUserId)
-                let user = await getUserBy_Id(newUserId)
-                
+                let user = await User.getUserBy_Id(newUserId)
                 console.log(user)
-                let newUser = new User(user);
+                let newUser = new User(user[0]);
                 resolve (newUser);
             } catch (err) {
                 reject('Error creating user');
