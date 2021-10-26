@@ -35,4 +35,16 @@ module.exports = class Habit {
             }
         })
     }
+    static create(userID, habitName, units="completions", quantity, days){
+        return new Promise (async (resolve, reject) => {
+            try {
+                const db = await init();
+                createdDate = Date()
+                let newHabit = db.collection('habits').insertOne({"userID":userID, "habitName":habitName, "units":units, "quantity":quantity, "days":days, "created_date":createdDate, "history":[] })
+                resolve (newHabit);
+            } catch (err) {
+                reject('Error creating user');
+            }
+        });
+    }
 };
