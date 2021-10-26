@@ -1,5 +1,4 @@
 const { init } = require ('../dbConfig')
-const { ObjectId } = require('mongodb')
 const{ ObjectID } = require('bson')
 
 module.exports = class User {
@@ -55,10 +54,10 @@ module.exports = class User {
                 const db = await init();
                 let userData = await db.collection('users').insertOne({ "name":name, "email":email, "password":password })
                 const newUserId = userData.insertedId.toString()
+                console.log(newUserId)
                 let user = await User.getUserBy_Id(newUserId)
-                console.log(user);
+                console.log(user)
                 let newUser = new User(user[0]);
-                console.log(newUser)
                 resolve (newUser);
             } catch (err) {
                 reject('Error creating user');

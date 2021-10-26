@@ -12,8 +12,9 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
-    "name": "bob",
-    "email": "max@max.com",
+
+    "name": "max",
+    "email": "maxxxxxxxxx@max.com",
     "password": "maxisthebest" 
 }
 ###
