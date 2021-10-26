@@ -28,8 +28,9 @@ module.exports = class User {
                 const db = await init()
                 
                 let data = await db.collection("users").find({email:email}).toArray()
-                console.log(data)
-                resolve(data);
+                let user = new User(data[0])
+                
+                resolve(user);
             } catch (err) {
                 reject("Error retrieving email.")
             }
