@@ -10,8 +10,11 @@ db.habits.insert([
         units: "glasses",
         quantity: 5, 
         days:{mon:true, tues:true, wed:true, thur:true, fri:true, sat:true, sun:true},
-        created_date: "Tue Oct 26 2021 11:13:54 GMT+0100 (British Summer Time)",
-        history: []
+        created_date: "26/9/2021",
+        history: {
+            "26/9/2021": 0
+        },
+        habitID: "617832857c247d4580fae6f9"  
     },
     {
         habitName: "run",
@@ -20,8 +23,11 @@ db.habits.insert([
         units: "km",
         quantity: 5,  
         days:{mon:true, tues:true, wed:true, thur:true, fri:true, sat:true, sun:true},
-        created_date: "Tue Oct 26 2021 11:13:54 GMT+0100 (British Summer Time)",
-        history: []
+        created_date: "26/9/2021",
+        history: {
+            "26/9/2021": 5
+        },
+        habitID: "617832857c247d4580fae6f6"  
     },
     {
         habitName: "piano",
@@ -30,15 +36,21 @@ db.habits.insert([
         units: "minutes",
         quantity: 30, 
         days:{mon:true, tues:true, wed:false, thur:true, fri:false, sat:true, sun:false},
-        created_date: "Tue Oct 26 2021 11:13:54 GMT+0100 (British Summer Time)",
-        history: []
+        created_date: "26/9/2021",
+        history: {
+            "26/9/2021": 30
+        },
+        habitID: "617832857c247d4580fae6f7"  
     },
     {
         habitName: "smoking",
         userID: "6176870f585134fd7e4d2454",
         goodHabit: false,
-        created_date: "Tue Oct 26 2021 11:13:54 GMT+0100 (British Summer Time)",
-        history: []
+        created_date: "26/9/2021",
+        history: {
+            "26/9/2021": 760
+        },
+        habitID: "617832857c247d4580fae6f8"  
     }
 ])
 
