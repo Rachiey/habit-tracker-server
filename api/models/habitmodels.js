@@ -65,7 +65,6 @@ module.exports = class Habit {
             try {
                 const db = await init();
                 let data = await db.collection("habits").find({_id:ObjectID(habitID)}).toArray()
-                
                 resolve(data);
             } catch (err) {
                 reject("Error retrieving ID.")
@@ -76,23 +75,29 @@ module.exports = class Habit {
     static incrementHabit(habitID){
         return new Promise (async (resolve, reject) => {
             try {
-                console.log(habitID)
-                let habit = getByHabit_Id(habitID)
-                console.log(habit)
-                let updatedHistory = habit.history
+                const db = await init()
+                let habit = await Habit.getByHabit_Id(habitID)
+                let updatedHistory = habit[0]['history']
                 console.log(updatedHistory)
-                console.log(updatedHistory.getObjectKeyValue(date))
                 const created_date = new Date();
                 const date = `${created_date.getDate()}/${created_date.getMonth()}/${created_date.getFullYear()}`
+                console.log(typeof date);
+                console.log(updatedHistory[date])
                 console.log('I WORK')
-                if(!updatedHistory.getObjectKeyValue(date)) {
-                    updatedHistory.getObjectKeyValue(date) = 1 
+                if(!updatedHistory[date]) {
+                    updatedHistory[date] = 1 
                     console.log('IN PART 1')
-                } else if(updatedHistory.getObjectKeyValue(date)){
-                    updatedHistory.getObjectKeyValue(date) += 1
+                    console.log(updatedHistory[date]);
+                } else if(updatedHistory[date]){
+                    updatedHistory[date] += 1
                     console.log('IN PART 2')
                 }
-                let incrementedHabit = await db.habits.updateOne({habitID:habitID}, { $set: {"history": updatedHistory}})
+                console.log(updatedHistory);
+                const query = {_id:ObjectID(habitID)};
+                const update = {$set: {"history":updatedHistory}};
+                const options = {retunNewDocument:false, returnOriginalDocument:false};
+                let incrementedHabit = await db.collection('habits').findOneAndUpdate(query,update,options)
+                // let incrementedHabit = await db.habits.updateOne({_id:ObjectID(habitID)}, { $set: {"history": updatedHistory}})
                 resolve(incrementedHabit)
             } catch (err) {
                 reject("Error incrementing habit")
