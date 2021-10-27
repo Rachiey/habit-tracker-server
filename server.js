@@ -5,9 +5,9 @@ const server = express();
 server.use(cors());
 server.use(express.json());
 
-const habitsRoutes = require('./routes/habitroutes')
-const userRoutes = require('./routes/userroutes')
-const authRoutes=require('./routes/authroutes')
+const habitsRoutes = require('/routes/habitroutes')
+const userRoutes = require('/routes/userroutes')
+const authRoutes=require('/routes/authroutes')
 server.use('/habits', habitsRoutes)
 server.use('/users', userRoutes)
 server.use('/auth', authRoutes)
