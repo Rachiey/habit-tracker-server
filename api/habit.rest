@@ -26,11 +26,36 @@ content-type: application/json
 
 {
     "habitName": "run",
-    "userID": "6176870f585134fd7e4d2454",
+    "userID": "61783ce02f9a58cfdbaf0e7e",
     "goodHabit": true,
     "units": "km",
     "quantity": 5,  
     "days":{"mon":true, "tues":true, "wed":true, "thur":true, "fri":true, "sat":true, "sun":true}
     
 }
+
+
+
+
+###
+POST http://localhost:3000/habits
+content-type: application/json
+
+{
+    "habitName": "water",
+    "userID": "61783d182f9a58cfdbaf0e7f",
+    "goodHabit": true,
+    "units": "glasses",
+    "quantity": 5,  
+    "days":{"mon":true, "tues":true, "wed":true, "thur":true, "fri":true, "sat":true, "sun":true}
+}
+###
+PATCH http://localhost:3000/habits/habit/617922e56bd7dc9effb998ce
+
+
+
+###
+GET http://localhost:3000/habits/habit/61791b77228d9670754763d7
+###
+GET http://localhost:3000/habits/user/61783d182f9a58cfdbaf0e7f
 
