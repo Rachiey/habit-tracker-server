@@ -82,8 +82,10 @@ module.exports = class Habit {
                 const date = `${created_date.getDate()}/${created_date.getMonth()}/${created_date.getFullYear()}`
                 if(!updatedHistory[date]) {
                     updatedHistory[date] = 1 
-                } else if(updatedHistory[date]){
-                    updatedHistory[date] += change
+                } else if(updatedHistory[date] && change=== 'up'){
+                    updatedHistory[date] += 1
+                } else if(updatedHistory[date] && change=== 'down'){
+                    updatedHistory[date] -= 1
                 }
                 const query = {_id:ObjectID(habitID)};
                 const update = {$set: {"history":updatedHistory}};
