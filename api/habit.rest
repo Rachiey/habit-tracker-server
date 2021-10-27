@@ -17,23 +17,37 @@ content-type: application/json
     "password": "maxisthebest" 
 }
 ###
-GET http://localhost:3000/users/6176870f585134fd7e4d2454
+GET http://localhost:3000/users/6179107d41da0827bcc1b934
 ###
 POST http://localhost:3000/habits
 content-type: application/json
 
 {
     "habitName": "run",
-    "userID": "6176870f585134fd7e4d2454",
+    "userID": "61791369cc68cfe91b9a07eb",
     "goodHabit": true,
     "units": "km",
     "quantity": 5,  
     "days":{"mon":true, "tues":true, "wed":true, "thur":true, "fri":true, "sat":true, "sun":true}
 }
 ###
-PATCH http://localhost:3000/habits/61782c3400a32cdcce99f326
+POST http://localhost:3000/habits
+content-type: application/json
+
+{
+    "habitName": "water",
+    "userID": "61791369cc68cfe91b9a07eb",
+    "goodHabit": true,
+    "units": "glasses",
+    "quantity": 5,  
+    "days":{"mon":true, "tues":true, "wed":true, "thur":true, "fri":true, "sat":true, "sun":true}
+}
+###
+PATCH http://localhost:3000/habits/habit/617913fbcc68cfe91b9a07ed
 
 
 
 ###
-GET http://localhost:3000/habits/6178349929cbf635944400f7
+GET http://localhost:3000/habits/habit/617913fbcc68cfe91b9a07ed
+###
+GET http://localhost:3000/habits/user/61791369cc68cfe91b9a07eb

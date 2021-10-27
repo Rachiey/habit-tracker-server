@@ -64,8 +64,8 @@ module.exports = class Habit {
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init();
-                let data = await db.collection("habits").find({_id:habitID}).toArray()
-                console.log(data);
+                let data = await db.collection("habits").find({_id:ObjectID(habitID)}).toArray()
+                
                 resolve(data);
             } catch (err) {
                 reject("Error retrieving ID.")
@@ -76,15 +76,21 @@ module.exports = class Habit {
     static incrementHabit(habitID){
         return new Promise (async (resolve, reject) => {
             try {
-
-                let updatedHistory = getByHabit_Id(habitID).history
-                
+                console.log(habitID)
+                let habit = getByHabit_Id(habitID)
+                console.log(habit)
+                let updatedHistory = habit.history
+                console.log(updatedHistory)
+                console.log(updatedHistory.getObjectKeyValue(date))
                 const created_date = new Date();
                 const date = `${created_date.getDate()}/${created_date.getMonth()}/${created_date.getFullYear()}`
-                if(!updatedHistory.date) {
-                    updatedHistory.date = 1 
-                } else if(updatedHistory.date){
-                    updatedHistory.date += 1
+                console.log('I WORK')
+                if(!updatedHistory.getObjectKeyValue(date)) {
+                    updatedHistory.getObjectKeyValue(date) = 1 
+                    console.log('IN PART 1')
+                } else if(updatedHistory.getObjectKeyValue(date)){
+                    updatedHistory.getObjectKeyValue(date) += 1
+                    console.log('IN PART 2')
                 }
                 let incrementedHabit = await db.habits.updateOne({habitID:habitID}, { $set: {"history": updatedHistory}})
                 resolve(incrementedHabit)
