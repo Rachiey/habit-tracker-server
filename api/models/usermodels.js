@@ -90,7 +90,7 @@ module.exports = class User {
                     const update = {$set: {"password":hashed}};
                     const options = {retunNewDocument:true};
                     let newpass = await db.collection('users').findOneAndUpdate(query,update,options)
-                    console.log(newpass);
+                    
                     resolve(newpass)
                 } else {
                     reject("Password Invalid")
