@@ -6,5 +6,5 @@ const userController = require('../controllers/usercontroller.js')
 
 router.get('/', userController.index)
 router.get('/:userId', userController.getUserById)
-// router.post('/', userController.create)
+router.post('/changePassword', userController.changePassword)
 module.exports = router;

@@ -23,14 +23,14 @@ async function register (req, res) {
 async function login (req, res) {
     try {
         console.log(req.body.email)
+        console.log(req.body.password);
         const user = await User.findByEmail(req.body.email)
-        console.log(user)
+        console.log(user);
         if(!user){ throw new Error('No user with this email') }
-        console.log(2)
-        const authed = bcrypt.compare(req.body.password, user.password)
-        console.log(3)
+        const authed = await bcrypt.compare(req.body.password, user.password)
+
         if (!!authed){
-            const payload = { name: user.name, email: user.email }
+            const payload = { name: user.name, email: user.email, userId:user.id }
             const sendToken = (err, token) => {
                 if(err){ throw new Error('Error in token generation') }
                 res.status(200).json({
@@ -38,7 +38,7 @@ async function login (req, res) {
                     token: "Bearer " + token,
                 });
             }
-            jwt.sign(payload, process.env.SECRET, { expiresIn: 60 }, sendToken);
+            jwt.sign(payload, process.env.SECRET, { expiresIn: 3600 }, sendToken);
         } else {
             throw new Error('User could not be authenticated')  
         }
@@ -47,6 +47,8 @@ async function login (req, res) {
         res.status(401).json({ err });
     }
 }
+        
+        
 
 // async function deleteMe (req, res) {
 //     try {
