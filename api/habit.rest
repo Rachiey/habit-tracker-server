@@ -12,12 +12,14 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
+
     "name": "max",
     "email": "maxxx@max.com",
     "password": "maxisthebest" 
 }
 ###
-GET http://localhost:3000/users/6179107d41da0827bcc1b934
+GET http://localhost:3000/users/6176d4fd5dea036b4f993abc
+
 ###
 POST http://localhost:3000/habits
 content-type: application/json
@@ -30,6 +32,7 @@ content-type: application/json
     "quantity": 5,  
     "days":{"mon":true, "tues":true, "wed":true, "thur":true, "fri":true, "sat":true, "sun":true}
 }
+
 ###
 POST http://localhost:3000/habits
 content-type: application/json
@@ -51,3 +54,4 @@ PATCH http://localhost:3000/habits/habit/617913fbcc68cfe91b9a07ed
 GET http://localhost:3000/habits/habit/617913fbcc68cfe91b9a07ed
 ###
 GET http://localhost:3000/habits/user/61791369cc68cfe91b9a07eb
+
