@@ -27,7 +27,7 @@ async function createHabit (req, res) {
 
 async function updateHabit (req, res) {
     try {
-        const habit = await Habit.incrementHabit(req.params.habitID)
+        const habit = await Habit.incrementHabit(req.params.habitID, req.params.change)
         res.status(200).json(habit);
     } catch (err) {
         res.status(500).send(err);

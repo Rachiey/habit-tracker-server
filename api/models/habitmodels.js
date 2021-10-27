@@ -72,27 +72,19 @@ module.exports = class Habit {
         })
     }
 
-    static incrementHabit(habitID){
+    static incrementHabit(habitID, change){
         return new Promise (async (resolve, reject) => {
             try {
                 const db = await init()
                 let habit = await Habit.getByHabit_Id(habitID)
-                let updatedHistory = habit[0]['history']
-                console.log(updatedHistory)
+                let updatedHistory = habit[0]['history']              
                 const created_date = new Date();
                 const date = `${created_date.getDate()}/${created_date.getMonth()}/${created_date.getFullYear()}`
-                console.log(typeof date);
-                console.log(updatedHistory[date])
-                console.log('I WORK')
                 if(!updatedHistory[date]) {
                     updatedHistory[date] = 1 
-                    console.log('IN PART 1')
-                    console.log(updatedHistory[date]);
                 } else if(updatedHistory[date]){
-                    updatedHistory[date] += 1
-                    console.log('IN PART 2')
+                    updatedHistory[date] += change
                 }
-                console.log(updatedHistory);
                 const query = {_id:ObjectID(habitID)};
                 const update = {$set: {"history":updatedHistory}};
                 const options = {retunNewDocument:false, returnOriginalDocument:false};
@@ -104,6 +96,27 @@ module.exports = class Habit {
             }
         })
     }
+
+    static decrementHabit(habitID){
+        return new Promise (async (resolve, reject) => {
+            try {
+                const db = await init()
+                let habit = await Habit.getByHabit_Id(habitID)
+                let updatedHistory = habit[0]['history']              
+                const created_date = new Date();
+                const date = `${created_date.getDate()}/${created_date.getMonth()}/${created_date.getFullYear()}`
+                updatedHistory[date] -= 1
+                const query = {_id:ObjectID(habitID)};
+                const update = {$set: {"history":updatedHistory}};
+                const options = {retunNewDocument:false, returnOriginalDocument:false};
+                let incrementedHabit = await db.collection('habits').findOneAndUpdate(query,update,options)
+                resolve(incrementedHabit)
+            } catch (err) {
+                reject("Error decrementing habit")
+            }
+        })
+    }
+
     static deleteHabit(habitID){
         return new Promise (async (resolve,reject) => {
             try {
