@@ -42,4 +42,13 @@ async function getByHabitId (req, res) {
     }
 }
 
-module.exports = {index, getByUserId, createHabit, updateHabit, getByHabitId}
+async function deleteHabit (req, res) {
+    try {
+        const habit = await Habit.deleteHabit(req.params.habitID);
+        res.status(204).json('Successfully deleted habit')
+    } catch(err) {
+        res.status(500).send(err)
+    }
+}
+
+module.exports = {index, getByUserId, createHabit, updateHabit, getByHabitId, deleteHabit}

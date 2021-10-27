@@ -104,4 +104,16 @@ module.exports = class Habit {
             }
         })
     }
+    static deleteHabit(habitID){
+        return new Promise (async (resolve,reject) => {
+            try {
+                const db = await init();
+                await db.collection("habits").deleteOne({ _id:ObjectID(habitID) })
+                resolve("Habit successfully deleted")
+            } catch (err) {
+                reject("Error deleting habit")
+            }
+        })
+    }
 };
+
