@@ -6,7 +6,7 @@ const habitController = require('../controllers/habitcontroller')
 
 router.get('/', verifyToken, habitController.index)
 router.get('/user/:userId',  habitController.getByUserId)
-router.post('/', habitController.createHabit)
+router.post('/', verifyToken, habitController.createHabit)
 router.patch('/habit/:habitID', habitController.updateHabit)
 router.get('/habit/:habitID', habitController.getByHabitId)
 module.exports = router;

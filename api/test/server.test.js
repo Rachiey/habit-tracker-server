@@ -3,15 +3,22 @@ const server = require('../server');
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+const jwt = require('jsonwebtoken');
 
 
 describe('Tests for API response', () =>{
     let app;
     let testNewUser =  {"name": "testysteve", "email": "testysteve@test.com", password: "testypass"}
     let testLogin = {"email": "testysteve@test.com", password: "testypass"}
+    let token;
+    
+
+
     beforeAll(() => {
         app = server.listen(3000, ()=> console.log("Test server started"))
     })
+    
+
     afterAll((done) =>{
         app.close(done)
     })
@@ -32,8 +39,39 @@ describe('Tests for API response', () =>{
         .send(testLogin)
         .set("Accept", "application/json")
         .set("Content-Type", "application/json; charset=utf-8")
-        .expect({success: true})
-        .expect(200, done)
+        .expect(200)
+        .end((err, response) => {
+            console.log(response.body);
+            token = response.body.token.split(' ')[1]; // save the token!
+            console.log(token);
+            done();
+        })
+    })
+
+    it("returns current user",done => {
+        let user = jwt.decode(token)
+        console.log(user);
+        let userId = user.userId;
+        console.log(userId);
+        request(app)
+        .get(`/users/${userId}`)
+        .set('Authorization', `Bearer ${token}`)
+        .expect(200,done)
+        
+    })
+    it("creates habit", done => {
+        let user = jwt.decode(token)
+        console.log(user);
+        let userId = user.userId;
+        console.log(userId);
+        let testHabit = {userID: userId, habitName: "water", quantity: 6}
+        request(app)
+        .post("/habits/")
+        .send(testHabit)
+        .set('Authorization', `Bearer ${token}`)
+        .set("Accept", "application/json")
+        .set("Content-Type", "application/json; charset=utf-8")
+        .expect(201,done)
     })
 
 })

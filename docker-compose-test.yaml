@@ -13,7 +13,7 @@ services:
       - DB_CONNECTION=mongodb://404bnfTest:tracker@db:27017
     depends_on:
       - db
-    command: bash -c "npm install && npm run test"
+    command: bash -c "npm install && npm run coverage"
     tty: true
   db:
     container_name: test_db
