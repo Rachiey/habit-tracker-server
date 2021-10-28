@@ -14,19 +14,19 @@ module.exports = class Habit {
         this.habitID = data._id;
         this.userID = data.userID
     }
-    static get all(){
-        return new Promise (async (resolve, reject) => {
-            try {
-                const db = await init() 
-                let data = await db.collection("habits").find().toArray()
-                let habits = data.map(d => new Habit({ ...d}))
+    // static get all(){
+    //     return new Promise (async (resolve, reject) => {
+    //         try {
+    //             const db = await init() 
+    //             let data = await db.collection("habits").find().toArray()
+    //             let habits = data.map(d => new Habit({ ...d}))
                 
-                resolve(habits);
-            } catch (err) {
-                reject("Error retrieving habits.")
-            }
-        })
-    }
+    //             resolve(habits);
+    //         } catch (err) {
+    //             reject("Error retrieving habits.")
+    //         }
+    //     })
+    // }
     static getByUser_Id(userId){
         return new Promise (async (resolve, reject) => {
             try {
