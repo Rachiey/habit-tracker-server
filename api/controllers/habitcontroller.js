@@ -10,9 +10,7 @@ async function index(req, res) {
 
 async function getByUserId (req, res) {
     try {
-        console.log(1);
         const habit = await Habit.getByUser_Id(req.params.userId);
-        console.log(habit);
         res.status(200).json(habit);
     } catch (err) {
         res.status(500).send(err);
@@ -28,7 +26,7 @@ async function createHabit (req, res) {
 }
 
 async function updateHabit (req, res) {
-    try {
+    try {        
         const habit = await Habit.incrementHabit(req.params.habitID, req.params.change)
         res.status(200).json(habit);
     } catch (err) {
@@ -43,10 +41,11 @@ async function getByHabitId (req, res) {
         res.status(500).send(err);
     }
 }
-
 async function deleteHabit (req, res) {
     try {
+        console.log("we're deleting");
         const habit = await Habit.deleteHabit(req.params.habitID);
+        console.log(habit);
         res.status(204).json('Successfully deleted habit')
     } catch(err) {
         res.status(500).send(err)
