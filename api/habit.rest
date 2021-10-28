@@ -12,14 +12,12 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
-
     "name": "max",
     "email": "maxxx@max.com",
-    "password": "maxisthebest" 
+    "password": "maxisthebest"
 }
 ###
-
-GET http://localhost:3000/users/61783c9d2f9a58cfdbaf0e7a 
+GET http://localhost:3000/users/6176870f585134fd7e4d2454
 ###
 POST http://localhost:3000/habits
 content-type: application/json
@@ -31,10 +29,7 @@ content-type: application/json
     "units": "km",
     "quantity": 5,  
     "days":{"mon":true, "tues":true, "wed":true, "thur":true, "fri":true, "sat":true, "sun":true}
-    
 }
-
-
 
 
 ###
@@ -43,13 +38,14 @@ content-type: application/json
 
 {
     "habitName": "water",
-    "userID": "61783d182f9a58cfdbaf0e7f",
+    "userID": "617918dd7c0dcbf9dbcf7ab1",
     "goodHabit": true,
     "units": "glasses",
     "quantity": 5,  
     "days":{"mon":true, "tues":true, "wed":true, "thur":true, "fri":true, "sat":true, "sun":true}
 }
 ###
+
 PATCH http://localhost:3000/habits/habit/617922e56bd7dc9effb998ce
 
 
@@ -58,4 +54,17 @@ PATCH http://localhost:3000/habits/habit/617922e56bd7dc9effb998ce
 GET http://localhost:3000/habits/habit/61791b77228d9670754763d7
 ###
 GET http://localhost:3000/habits/user/61783d182f9a58cfdbaf0e7f
+
+
+PATCH http://localhost:3000/habits/habit/6179661088b14326c8d2e81e/up
+
+###
+PATCH http://localhost:3000/habits/habit/6179661088b14326c8d2e81e/down
+###
+GET http://localhost:3000/habits/habit/617918ec7c0dcbf9dbcf7ab2
+###
+GET http://localhost:3000/habits/user/617918dd7c0dcbf9dbcf7ab1
+
+###
+DELETE http://localhost:3000/habits/habit/61794faf8341dad641bf9d8d 
 
