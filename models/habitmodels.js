@@ -45,9 +45,7 @@ module.exports = class Habit {
                 let {userID, habitName, goodHabit, units="completions", quantity, days} = data
                 const db = await init();
                 const created_date = new Date();
-
-                let date = `${created_date.getMonth()}/${created_date.getDate()}/${created_date.getFullYear()}`
-
+                let date = `${created_date.getDate()}/${created_date.getMonth()}/${created_date.getFullYear()}`
                 const history = { 
                     [date] : 0 
                 }
@@ -81,7 +79,7 @@ module.exports = class Habit {
                 let habit = await Habit.getByHabit_Id(habitID)
                 let updatedHistory = habit[0]['history']              
                 const created_date = new Date();
-                const date = `${created_date.getMonth()}/${created_date.getDate()}/${created_date.getFullYear()}`
+                const date = `${created_date.getDate()}/${created_date.getMonth()}/${created_date.getFullYear()}`
                 if(!updatedHistory[date]) {
                     updatedHistory[date] = 1 
                 } else if(updatedHistory[date] && change=== 'up'){
@@ -89,7 +87,6 @@ module.exports = class Habit {
                 } else if(updatedHistory[date] && change=== 'down'){
                     updatedHistory[date] -= 1
                 }
-
                 const query = {_id:ObjectID(habitID)};
                 const update = {$set: {"history":updatedHistory}};
                 const options = {retunNewDocument:false, returnOriginalDocument:false};
@@ -101,6 +98,7 @@ module.exports = class Habit {
             }
         })
     }
+
 
     static deleteHabit(habitID){
         return new Promise (async (resolve,reject) => {
