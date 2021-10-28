@@ -6,7 +6,7 @@ services:
     working_dir: /code
     volumes:
       - type: bind
-        source: ./api
+        source: ./
         target: /code
     ports:
       - 3000:3000
