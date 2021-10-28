@@ -26,6 +26,7 @@ async function createHabit (req, res) {
 }
 
 async function updateHabit (req, res) {
+
     try {        
         const habit = await Habit.incrementHabit(req.params.habitID, req.params.change)
         res.status(200).json(habit);
@@ -41,15 +42,16 @@ async function getByHabitId (req, res) {
         res.status(500).send(err);
     }
 }
+
+
 async function deleteHabit (req, res) {
     try {
-        console.log("we're deleting");
         const habit = await Habit.deleteHabit(req.params.habitID);
-        console.log(habit);
         res.status(204).json('Successfully deleted habit')
     } catch(err) {
         res.status(500).send(err)
     }
 }
+
 
 module.exports = {index, getByUserId, createHabit, updateHabit, getByHabitId, deleteHabit}
