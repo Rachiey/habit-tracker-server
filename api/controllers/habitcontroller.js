@@ -10,7 +10,9 @@ async function index(req, res) {
 
 async function getByUserId (req, res) {
     try {
+        console.log(1);
         const habit = await Habit.getByUser_Id(req.params.userId);
+        console.log(habit);
         res.status(200).json(habit);
     } catch (err) {
         res.status(500).send(err);
