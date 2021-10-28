@@ -1,1 +1,3 @@
-docker compose down --remove-orphans --volumes
+docker compose down --volumes --remove-orphans
+docker volume prune --force
+

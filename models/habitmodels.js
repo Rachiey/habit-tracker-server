@@ -45,7 +45,7 @@ module.exports = class Habit {
                 let {userID, habitName, goodHabit, units="completions", quantity, days} = data
                 const db = await init();
                 const created_date = new Date();
-                let date = `${created_date.getMonth()}/${created_date.getDate()}/${created_date.getFullYear()}`
+                let date = `${created_date.getDate()}/${created_date.getMonth()}/${created_date.getFullYear()}`
                 const history = { 
                     [date] : 0 
                 }
@@ -100,14 +100,10 @@ module.exports = class Habit {
     }
 
 
-    
-
     static deleteHabit(habitID){
         return new Promise (async (resolve,reject) => {
             try {
                 const db = await init();
-                console.log("habit id :");
-                console.log(habitID);
                 await db.collection("habits").deleteOne({ _id:ObjectID(habitID) })
                 resolve("Habit successfully deleted")
             } catch (err) {
