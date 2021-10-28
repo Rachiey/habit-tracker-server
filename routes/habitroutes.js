@@ -10,4 +10,5 @@ router.post('/', habitController.createHabit)
 router.patch('/habit/:habitID/:change', habitController.updateHabit)
 router.get('/habit/:habitID', habitController.getByHabitId)
 router.delete('/habit/:habitID', habitController.deleteHabit)
+
 module.exports = router;

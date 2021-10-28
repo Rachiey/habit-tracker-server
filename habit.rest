@@ -12,19 +12,23 @@ POST http://localhost:3000/auth/register
 content-type: application/json
 
 {
+
     "name": "max",
     "email": "maxxx@max.com",
     "password": "maxisthebest"
 }
 ###
 GET http://localhost:3000/users/6176870f585134fd7e4d2454
+
 ###
 POST http://localhost:3000/habits
 content-type: application/json
 
 {
     "habitName": "run",
+
     "userID": "617918dd7c0dcbf9dbcf7ab1",
+
     "goodHabit": true,
     "units": "km",
     "quantity": 5,  
@@ -54,3 +58,4 @@ GET http://localhost:3000/habits/user/617918dd7c0dcbf9dbcf7ab1
 
 ###
 DELETE http://localhost:3000/habits/habit/61794faf8341dad641bf9d8d 
+
