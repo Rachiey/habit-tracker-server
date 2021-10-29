@@ -5,7 +5,7 @@ const { verifyToken } = require('../middleware/auth');
 const userController = require('../controllers/usercontroller.js')
 
 // router.get('/', userController.index)
-router.get('/:userId', userController.getUserById)
-router.post('/changePassword', userController.changePassword)
+router.get('/:userId', verifyToken, userController.getUserById)
+router.post('/changePassword', verifyToken, userController.changePassword)
 
 module.exports = router;

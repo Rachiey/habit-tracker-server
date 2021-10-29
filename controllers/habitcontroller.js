@@ -53,9 +53,6 @@ async function deleteHabit (req, res) {
     }
 }
 
-<<<<<<< HEAD
-module.exports = {getByUserId, createHabit, updateHabit, getByHabitId, deleteHabit}
-=======
 
-module.exports = {index, getByUserId, createHabit, updateHabit, getByHabitId, deleteHabit}
->>>>>>> 72c8562d8c91def893bbb3eb634db20ce8048d41
+module.exports = {getByUserId, createHabit, updateHabit, getByHabitId, deleteHabit}
+
