@@ -12,7 +12,10 @@ db.habits.insert([
         days:{mon:true, tues:true, wed:true, thur:true, fri:true, sat:true, sun:true},
         created_date: "26/9/2021",
         history: {
-            "26/9/2021": 0
+            "25/9/2021": 5,
+            "26/9/2021": 5,
+            "27/9/2021": 5,
+            "28/9/2021": 5,
         },
         habitID: "617832857c247d4580fae6f9"  
     },
@@ -25,7 +28,7 @@ db.habits.insert([
         days:{mon:true, tues:true, wed:true, thur:true, fri:true, sat:true, sun:true},
         created_date: "26/9/2021",
         history: {
-            "26/9/2021": 5
+            "28/9/2021": 5
         },
         habitID: "617832857c247d4580fae6f6"  
     },
@@ -38,20 +41,12 @@ db.habits.insert([
         days:{mon:true, tues:true, wed:false, thur:true, fri:false, sat:true, sun:false},
         created_date: "26/9/2021",
         history: {
-            "26/9/2021": 30
+            "27/9/2021": 30,
+            "28/9/2021": 30
         },
         habitID: "617832857c247d4580fae6f7"  
-    },
-    {
-        habitName: "smoking",
-        userID: "6176870f585134fd7e4d2454",
-        goodHabit: false,
-        created_date: "26/9/2021",
-        history: {
-            "26/9/2021": 760
-        },
-        habitID: "617832857c247d4580fae6f8"  
     }
+    
 ])
 
 db.users.drop()

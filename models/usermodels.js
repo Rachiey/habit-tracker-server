@@ -11,17 +11,17 @@ module.exports = class User {
         this.id = data._id;
 
     }
-    static get all(){
-        return new Promise (async (resolve, reject) => {
-            try {
-                const db = await init() 
-                let data = await db.collection("users").find().toArray()
-                resolve(data);
-            } catch (err) {
-                reject("Error retrieving users.")
-            }
-        })
-    }
+    // static get all(){
+    //     return new Promise (async (resolve, reject) => {
+    //         try {
+    //             const db = await init() 
+    //             let data = await db.collection("users").find().toArray()
+    //             resolve(data);
+    //         } catch (err) {
+    //             reject("Error retrieving users.")
+    //         }
+    //     })
+    // }
 
   
     static findByEmail(email){
@@ -30,8 +30,6 @@ module.exports = class User {
                 const db = await init()
                 let data = await db.collection("users").find({email:email}).toArray()
                 let user = new User(data[0]);
-
-
                 resolve(user);
             } catch (err) {
                 reject("Error retrieving email.")

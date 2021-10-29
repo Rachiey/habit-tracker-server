@@ -14,19 +14,19 @@ module.exports = class Habit {
         this.habitID = data._id;
         this.userID = data.userID
     }
-    static get all(){
-        return new Promise (async (resolve, reject) => {
-            try {
-                const db = await init() 
-                let data = await db.collection("habits").find().toArray()
-                let habits = data.map(d => new Habit({ ...d}))
+    // static get all(){
+    //     return new Promise (async (resolve, reject) => {
+    //         try {
+    //             const db = await init() 
+    //             let data = await db.collection("habits").find().toArray()
+    //             let habits = data.map(d => new Habit({ ...d}))
                 
-                resolve(habits);
-            } catch (err) {
-                reject("Error retrieving habits.")
-            }
-        })
-    }
+    //             resolve(habits);
+    //         } catch (err) {
+    //             reject("Error retrieving habits.")
+    //         }
+    //     })
+    // }
     static getByUser_Id(userId){
         return new Promise (async (resolve, reject) => {
             try {
@@ -99,25 +99,6 @@ module.exports = class Habit {
         })
     }
 
-    static decrementHabit(habitID){
-        return new Promise (async (resolve, reject) => {
-            try {
-                const db = await init()
-                let habit = await Habit.getByHabit_Id(habitID)
-                let updatedHistory = habit[0]['history']              
-                const created_date = new Date();
-                const date = `${created_date.getDate()}/${created_date.getMonth()}/${created_date.getFullYear()}`
-                updatedHistory[date] -= 1
-                const query = {_id:ObjectID(habitID)};
-                const update = {$set: {"history":updatedHistory}};
-                const options = {retunNewDocument:false, returnOriginalDocument:false};
-                let incrementedHabit = await db.collection('habits').findOneAndUpdate(query,update,options)
-                resolve(incrementedHabit)
-            } catch (err) {
-                reject("Error decrementing habit")
-            }
-        })
-    }
 
     static deleteHabit(habitID){
         return new Promise (async (resolve,reject) => {

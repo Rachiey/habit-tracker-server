@@ -1,12 +1,12 @@
 const Habit = require('../models/habitmodels')
-async function index(req, res) {
-    try {
-        const habit = await Habit.all;
-        res.status(200).json(habit);
-    } catch (err) {
-        res.status(500).send(err);
-    }
-}
+// async function index(req, res) {
+//     try {
+//         const habit = await Habit.all;
+//         res.status(200).json(habit);
+//     } catch (err) {
+//         res.status(500).send(err);
+//     }
+// }
 
 async function getByUserId (req, res) {
     try {
@@ -26,7 +26,8 @@ async function createHabit (req, res) {
 }
 
 async function updateHabit (req, res) {
-    try {
+
+    try {        
         const habit = await Habit.incrementHabit(req.params.habitID, req.params.change)
         res.status(200).json(habit);
     } catch (err) {
@@ -42,6 +43,7 @@ async function getByHabitId (req, res) {
     }
 }
 
+
 async function deleteHabit (req, res) {
     try {
         const habit = await Habit.deleteHabit(req.params.habitID);
@@ -51,4 +53,6 @@ async function deleteHabit (req, res) {
     }
 }
 
-module.exports = {index, getByUserId, createHabit, updateHabit, getByHabitId, deleteHabit}
+
+module.exports = {getByUserId, createHabit, updateHabit, getByHabitId, deleteHabit}
+
